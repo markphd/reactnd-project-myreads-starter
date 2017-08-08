@@ -1,4 +1,5 @@
 import React from 'react'
+import { Route } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 import './App.css'
 import ListBooks from './ListBooks'
@@ -6,6 +7,8 @@ import BookShelf from './BookShelf'
 
 class BooksApp extends React.Component {
   state = {
+    screen: 'home',
+    // screen: 'search',
     books: []
     /**
      * TODO: Instead of using this state variable to keep track of which page
@@ -16,11 +19,11 @@ class BooksApp extends React.Component {
     // showSearchPage: true
   }
 
-  // componentDidMount() {
-  //   BooksAPI.getAll().then((books) => {
-  //     this.setState({ books })
-  //   })
-  // }
+  componentDidMount() {
+    BooksAPI.getAll().then((books) => {
+      this.setState({ books })
+    })
+  }
 
   // getAllBooks = () => {
   //   BooksAPI.getAll().then((books) => {
@@ -37,9 +40,15 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
+
+        {this.state.screen === 'home' && (
+          <BookShelf books={this.state.books} />
+        )}
+          
+        {this.state.screen === 'search' && (
+          <ListBooks searchBooks={this.searchBooks} books={this.state.books } />
+        )}
         
-        <ListBooks getAllBooks={this.getAllBooks} searchBooks={this.searchBooks} books={this.state.books } />
-        <BookShelf/>
       </div> // END OF .app
     )
   }
