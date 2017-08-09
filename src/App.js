@@ -7,8 +7,6 @@ import BookShelf from './BookShelf'
 
 class BooksApp extends React.Component {
   state = {
-    // screen: 'home',
-    // screen: 'search',
     books: [],
     results: []
     /**
@@ -25,12 +23,6 @@ class BooksApp extends React.Component {
       this.setState({ books })
     })
   }
-
-  // getAllBooks = () => {
-  //   BooksAPI.getAll().then((books) => {
-  //     this.setState({ books })
-  //   })
-  // }
 
   searchBooks = (query) => {
     BooksAPI.search(query).then((results) => {

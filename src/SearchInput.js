@@ -1,6 +1,4 @@
 import React, { Component } from 'react'
-import escapeStringRegExp from 'escape-string-regexp'
-// import sortBy from 'sort-by'
 
 class SearchInput extends Component {
 	state = {

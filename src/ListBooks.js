@@ -9,30 +9,10 @@ class ListBooks extends Component {
 		showResult: ''
 	}
 
-	// updateQuery = (query) => {
-	// 	this.setState({
-	// 		query: query.trim()
-	// 	})
-	// };
-
-	// clearQuery = () => {
-	// 	this.setState({ query: '' })
-	// }
-
-	// getDataFromSearchInput = (query) => {
-	// 	this.setState({ query })	
-	// }
 	isSearchQueryEmpty = (bool) => {
-		// bool ? this.setState({showResult: true}) : this.setState({showResult: false})
 		bool ? this.state.showResult = true : this.state.showResult = false
 		console.log(this.state.showResult)
 	}
-
-
-	// isSearchQueryEmpty = (val) => {
-	// 	console.log("Success!", val);
-	// 	let emptyQuery = val;
-	// }
 
 	render() {
 		return(
