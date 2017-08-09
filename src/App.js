@@ -7,9 +7,10 @@ import BookShelf from './BookShelf'
 
 class BooksApp extends React.Component {
   state = {
-    screen: 'home',
+    // screen: 'home',
     // screen: 'search',
-    books: []
+    books: [],
+    results: []
     /**
      * TODO: Instead of using this state variable to keep track of which page
      * we're on, use the URL in the browser's address bar. This will ensure that
@@ -32,8 +33,8 @@ class BooksApp extends React.Component {
   // }
 
   searchBooks = (query) => {
-    BooksAPI.search(query).then((books) => {
-      this.setState({ books })
+    BooksAPI.search(query).then((results) => {
+      this.setState({ results })
     })
   }
 
@@ -46,7 +47,7 @@ class BooksApp extends React.Component {
         />
         
         <Route path="/search" render={() => (
-          <ListBooks searchBooks={this.searchBooks} books={this.state.books } />
+          <ListBooks searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} />
           )}
         />
 

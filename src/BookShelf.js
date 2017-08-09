@@ -3,9 +3,9 @@ import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 class BookShelf extends Component {
-	// state = {
-	// 	shelf: []
-	// }
+	state = {
+		shelf: []
+	}
 
 	// componentDidMount(){
 	// 	BooksAPI.getAll().then((shelf) => {
