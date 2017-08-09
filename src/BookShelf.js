@@ -1,4 +1,5 @@
 import React, { Component } from 'react'
+import { Link } from 'react-router-dom'
 import * as BooksAPI from './BooksAPI'
 
 class BookShelf extends Component {
@@ -106,6 +107,9 @@ class BookShelf extends Component {
                   </li>
                 ))}
               </ol>
+            </div>
+            <div className="open-search">
+              <Link to="/search" onClick={() => this.setState({})}>Add a book</Link>
             </div>
           </div>
         </div>

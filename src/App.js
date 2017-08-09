@@ -40,15 +40,16 @@ class BooksApp extends React.Component {
   render() {
     return (
       <div className="app">
-
-        {this.state.screen === 'home' && (
+        <Route exact path="/" render={() => (
           <BookShelf books={this.state.books} />
-        )}
-          
-        {this.state.screen === 'search' && (
-          <ListBooks searchBooks={this.searchBooks} books={this.state.books } />
-        )}
+          )}
+        />
         
+        <Route path="/search" render={() => (
+          <ListBooks searchBooks={this.searchBooks} books={this.state.books } />
+          )}
+        />
+
       </div> // END OF .app
     )
   }
