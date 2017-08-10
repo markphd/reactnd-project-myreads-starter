@@ -40,14 +40,14 @@ class BooksApp extends React.Component {
 
   searchBooks = (query) => {
     BooksAPI.search(query).then((results) => {
-      this.setState({ results })
+      this.setState({ results }, () => this.updateShelf )
     })
   }
 
   updateShelf = (book, shelf) => {
     BooksAPI.update(book, shelf)
     .then(res => console.log(res, shelf))
-    .then(this.getAllBooks())
+    .then(this.getAllBooks)
   }
 
   render() {
