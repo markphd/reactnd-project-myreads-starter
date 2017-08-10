@@ -22,7 +22,7 @@ class ListBooks extends Component {
 			    <ol className="books-grid">
 					{this.state.showResult && (
 						 this.props.results.map((book) => (
-							<li key={book.id} className=''>
+							<li key={book.industryIdentifiers[0].identifier} className=''>
 								<div className="book">
 									<div className="book-top">
 									  <div className="book-cover" style={{ width: 128, height: 193, backgroundImage: `url(${book.imageLinks.thumbnail})` }}></div>
