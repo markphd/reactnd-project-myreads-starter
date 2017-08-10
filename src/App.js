@@ -45,10 +45,22 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book, shelf) => {
+    book.shelf = shelf
+
     BooksAPI.update(book, shelf)
     .then(res => console.log(res, shelf))
     .then(this.getAllBooks)
   }
+
+  // updateShelf = (book, shelf) => {
+  //    book.shelf = shelf;
+  //    this.setState(state => ({
+  //      books: state.books.filter(book => book).concat([book]) 
+  //    }));
+  //    BooksAPI.update(book.id, shelf).then(
+  //      console.log('Called updateShelf: ', book.title, shelf)
+  //    );
+  //  };
 
   render() {
     return (
@@ -62,7 +74,8 @@ class BooksApp extends React.Component {
           <ListBooks searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} updateShelf={this.updateShelf} />
           )}
         />
-
+        {JSON.stringify(this.state.books)}
+        {JSON.stringify(this.state.results)}
       </div> // END OF .app
     )
   }

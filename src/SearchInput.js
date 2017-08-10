@@ -14,15 +14,20 @@ class SearchInput extends Component {
 		this.props.searchBooks(query)
 		this.props.isQueryEmpty(query.length > 0)
 	}
+
+	clearQuery = () => {
+		this.setState({
+			query: ''
+		})
+	}
 	
 	render() {
 		return(
 			<div className="search-books-bar">
 			  <Link to="/" className="close-search" onClick={() => {}}>Close</Link>
 			  <div className="search-books-input-wrapper">
-			    <input type="text" placeholder="Search by title or author" onChange={(event) => this.updateQuery(event.target.value)} />
+			    <input type="text" placeholder="Search by title or author" onChange={(event) => this.updateQuery(event.target.value)} autofocus="true" />
 			  </div>
-			  <button>Show All</button>
 			</div>
 		)
 	}
