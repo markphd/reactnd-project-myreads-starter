@@ -12,6 +12,10 @@ class BookShelf extends Component {
 	// }
 
   state = {
+    currentlyReadingShelf: [],
+    wantToReadShelf: [],
+    readShelf: [],
+    booksOnShelf: [],
     books: this.props.books
   }
 
@@ -48,7 +52,7 @@ class BookShelf extends Component {
               </ol>
             </div>
           </div>
-          {JSON.stringify(this.state.shelfLoad)}
+
           <div className="bookshelf">
             <h2 className="bookshelf-title">Read</h2>
             <div className="bookshelf-books">
@@ -59,9 +63,11 @@ class BookShelf extends Component {
               </ol>
             </div>
             <div className="open-search">
-              <Link to="/search" onClick={() => this.setState({})}>Add a book</Link>
+              <Link to="/search">Add a book</Link>
             </div>
           </div>
+
+          {console.log(this.state.currentlyReading)}
         </div>
       </div>
 		)

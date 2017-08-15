@@ -21,6 +21,7 @@ class BooksApp extends React.Component {
     
     this.state = {
       books: [],
+      onshelf: [],
       results: [],
       shelf: ''
     }
@@ -38,6 +39,10 @@ class BooksApp extends React.Component {
     })
   }
 
+  getShelf = (c, r, w) => {
+    this.setState({ onshelf: c, r, w})
+  }
+
   searchBooks = (query) => {
     BooksAPI.search(query).then((results) => {
       this.setState({ results }, () => this.updateShelf )
@@ -45,11 +50,14 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book, shelf) => {
-    book.shelf = shelf
 
     BooksAPI.update(book, shelf)
     .then(res => console.log(res, shelf))
+    .then(this.setState({shelf}))
+    .then(this.props.onUpdateShelf)
     .then(this.getAllBooks)
+    
+    this.props.onUpdateShelf
   }
 
   // updateShelf = (book, shelf) => {
@@ -66,16 +74,15 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={( {history} ) => (
-          <BookShelf books={this.state.books} updateShelf={this.updateShelf} shelf={this.state.shelf} />
+          <BookShelf books={this.state.books} updateShelf={this.updateShelf} shelf={this.state.shelf} getShelf={this.getShelf}/>
           )}
         />
         
-        <Route path="/search" render={() => (
-          <ListBooks searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} updateShelf={this.updateShelf} />
+        <Route path="/search" render={( {history} ) => (
+          <ListBooks getShelf={this.getShelf} searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} updateShelf={this.updateShelf} history={history} />
           )}
         />
-        {JSON.stringify(this.state.books)}
-        {JSON.stringify(this.state.results)}
+
       </div> // END OF .app
     )
   }

@@ -3,6 +3,11 @@ import * as BooksAPI from './BooksAPI'
 
 class ShelfChanger extends Component {
 
+	onShelfChange = (e) => {
+		this.props.updateShelf(this.props.book, e.target.value)
+		this.props.onUpdateShelf(e.target.value)
+	}
+
 	render(){
 		const shelves = [
 			{ 
@@ -22,12 +27,15 @@ class ShelfChanger extends Component {
 				"label" : "None"
 			}
 		]
+
 		return(
-			<select onChange={(event) => this.props.updateShelf(this.props.book, event.target.value)}>
-				{ this.props.shelf === undefined ? <option value="null" disabled selected="true">Move to...</option> : <option disabled>Move to...</option> }
-				{ shelves.map((s) => (
-					s.status === this.props.shelf ? <option value={s.status} selected>{s.label}</option> : <option value={s.status}>{s.label}</option> 
-				))}
+			<select onChange={ this.onShelfChange }>
+				<option value="null" disabled selected={this.props.shelf === undefined ? true : false } >Move to...</option>
+			
+					{ shelves.map((s) => (
+						s.status === this.props.shelf ? <option value={s.status} selected>{s.label}</option> : <option value={s.status}>{s.label}</option>
+					))}
+
 			</select>
 		)
 	}
