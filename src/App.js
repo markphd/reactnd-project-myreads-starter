@@ -29,13 +29,13 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
+      this.setState({ onshelf: books.filter((book) => book.shelf !== undefined) })
     })
   }
 
   getAllBooks = () => {
     BooksAPI.getAll().then((books) => {
-      this.setState({ books })
+      this.setState({ onshelf: books.filter((book) => book.shelf !== undefined) })
     })
   }
 
@@ -60,6 +60,7 @@ class BooksApp extends React.Component {
     this.props.onUpdateShelf
   }
 
+
   // updateShelf = (book, shelf) => {
   //    book.shelf = shelf;
   //    this.setState(state => ({
@@ -74,12 +75,20 @@ class BooksApp extends React.Component {
     return (
       <div className="app">
         <Route exact path="/" render={( {history} ) => (
-          <BookShelf books={this.state.books} updateShelf={this.updateShelf} shelf={this.state.shelf} getShelf={this.getShelf}/>
+          <BookShelf 
+            onshelf={this.state.onshelf} 
+            currentlyReading={this.state.onshelf.filter((book) => book.shelf === 'currentlyReading')}
+            wantToRead={this.state.onshelf.filter((book) => book.shelf === 'wantToRead')} 
+            read={this.state.onshelf.filter((book) => book.shelf === 'read')} 
+            books={this.state.books} 
+            updateShelf={this.updateShelf} 
+            shelf={this.state.shelf} 
+            getShelf={this.getShelf}/>
           )}
         />
         
         <Route path="/search" render={( {history} ) => (
-          <ListBooks getShelf={this.getShelf} searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} updateShelf={this.updateShelf} history={history} />
+          <ListBooks onshelf={this.state.onshelf} getShelf={this.getShelf} searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} updateShelf={this.updateShelf} history={history} />
           )}
         />
 

@@ -12,22 +12,16 @@ class BookShelf extends Component {
 	// }
 
   state = {
-    currentlyReadingShelf: [],
-    wantToReadShelf: [],
-    readShelf: [],
-    booksOnShelf: [],
-    books: this.props.books
+    shelf: ''
   }
 
 	render() {
-    let currentlyReadingShelf = this.props.books.filter((book) => book.shelf === 'currentlyReading')
-    let wantToReadShelf = this.props.books.filter((book) => book.shelf === 'wantToRead')
-    let readShelf = this.props.books.filter((book) => book.shelf === 'read')
-
+     
 		return(
       <div className="list-books">
         <div className="list-books-title">
           <h1>MyReads</h1>
+          {JSON.stringify(this.props.onshelf)}
         </div>
         <div className="list-books-content">
       
@@ -35,7 +29,7 @@ class BookShelf extends Component {
              <h2 className="bookshelf-title">Currently Reading</h2>
              <div className="bookshelf-books">
               <ol className="books-grid">
-                { currentlyReadingShelf.map((book) => (
+                { this.props.currentlyReading.map((book) => (
                   <Book key={book.industryIdentifiers[0].identifier} cover={book.imageLinks.thumbnail} title={book.title} authors={book.authors} id={book.id} shelf={book.shelf} book={book} updateShelf={this.props.updateShelf} />
                 ))}
               </ol>
@@ -46,7 +40,7 @@ class BookShelf extends Component {
             <h2 className="bookshelf-title">Want to Read</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                { wantToReadShelf.map((book) => (
+                { this.props.wantToRead.map((book) => (
                   <Book key={book.industryIdentifiers[0].identifier} cover={book.imageLinks.thumbnail} title={book.title} authors={book.authors} id={book.id} shelf={book.shelf} book={book} updateShelf={this.props.updateShelf} />
                 ))}
               </ol>
@@ -57,7 +51,7 @@ class BookShelf extends Component {
             <h2 className="bookshelf-title">Read</h2>
             <div className="bookshelf-books">
               <ol className="books-grid">
-                { readShelf.map((book) => (
+                { this.props.read.map((book) => (
                   <Book key={book.industryIdentifiers[0].identifier} cover={book.imageLinks.thumbnail} title={book.title} authors={book.authors} id={book.id} shelf={book.shelf} book={book} updateShelf={this.props.updateShelf} />
                 ))}
               </ol>
