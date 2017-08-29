@@ -22,9 +22,30 @@ class ListBooks extends Component {
 	// 	this.props.results.map((book) => this.props.onshelf.filter((a) => a.id === book.id ? console.log(a) : console.log(book) ))
 	// }
 
-	bookLoader = (book) => {
-		let index = this.props.onshelf.indexOf(book)
-		index >= 0 ? this.setState({ book: this.props.onshelf(index)}) : this.setState({ book }) 
+	loadBook = (book) => {
+		let index = this.props.books.findIndex( (b) => b.id === book.id )
+		console.log(this.props.books[index])
+		if (index >= 0) {
+			return <Book
+				key={this.props.books[index].industryIdentifiers[0].identifier} 
+				cover={this.props.books[index].imageLinks.thumbnail} 
+				title={this.props.books[index].title} 
+				authors={this.props.books[index].authors} 
+				id={this.props.books[index].id} 
+				shelf={this.props.books[index].shelf} 
+				book={this.props.books[index]} 
+				updateShelf={this.props.updateShelf} />
+		} else {
+			return <Book
+				key={book.industryIdentifiers[0].identifier} 
+				cover={book.imageLinks.thumbnail} 
+				title={book.title} 
+				authors={book.authors} 
+				id={book.id} 
+				shelf={book.shelf} 
+				book={book} 
+				updateShelf={this.props.updateShelf} />
+		}
 	}
 
 	render() {
@@ -33,10 +54,10 @@ class ListBooks extends Component {
 			  <SearchInput searchBooks={this.props.searchBooks} isQueryEmpty={this.isSearchQueryEmpty} />
 			  <div className="search-books-results">
 			    <ol className="books-grid">
+			    	{JSON.stringify(this.props.results)}
 					{this.state.showResult && (
 						this.props.results.map((book) => (
-							this.bookLoader(book),
-							<Book history={this.props.history} key={this.state.book.industryIdentifiers[0].identifier} cover={this.state.book.imageLinks.thumbnail} title={this.state.book.title} authors={this.state.book.authors} id={this.state.book.id} shelf={this.state.book.shelf} book={this.state.book} updateShelf={this.props.updateShelf} />
+							this.loadBook(book)
 						))
 					)}
 			    </ol>

@@ -29,18 +29,14 @@ class BooksApp extends React.Component {
 
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
-      this.setState({ onshelf: books.filter((book) => book.shelf !== undefined) })
+      this.setState({books})
     })
   }
 
   getAllBooks = () => {
     BooksAPI.getAll().then((books) => {
-      this.setState({ onshelf: books.filter((book) => book.shelf !== undefined) })
+      this.setState({books})
     })
-  }
-
-  getShelf = (c, r, w) => {
-    this.setState({ onshelf: c, r, w})
   }
 
   searchBooks = (query) => {
@@ -50,26 +46,20 @@ class BooksApp extends React.Component {
   }
 
   updateShelf = (book, shelf) => {
-
-    BooksAPI.update(book, shelf)
-    .then(res => console.log(res, shelf))
-    .then(this.setState({shelf}))
-    .then(this.props.onUpdateShelf)
-    .then(this.getAllBooks)
-    
-    this.props.onUpdateShelf
+    book.shelf = shelf
+    this.setState(previousState => ({
+        books: previousState.books.filter(b => b.id !== book.id).concat([book])
+    }))
   }
 
+  // bookLoader = (books, results) => {
+  //   results.map( (book) => (
+  //     let index = books.findIndex(book) 
+  //     if books.findIndex(book) >= 0 results.concat(books[index]) : book
+  //   ))
 
-  // updateShelf = (book, shelf) => {
-  //    book.shelf = shelf;
-  //    this.setState(state => ({
-  //      books: state.books.filter(book => book).concat([book]) 
-  //    }));
-  //    BooksAPI.update(book.id, shelf).then(
-  //      console.log('Called updateShelf: ', book.title, shelf)
-  //    );
-  //  };
+  //   // index >= 0 ? this.setState({ book: this.props.onshelf(index)}) : this.setState({ book }) 
+  // }
 
   render() {
     return (
@@ -77,18 +67,24 @@ class BooksApp extends React.Component {
         <Route exact path="/" render={( {history} ) => (
           <BookShelf 
             onshelf={this.state.onshelf} 
-            currentlyReading={this.state.onshelf.filter((book) => book.shelf === 'currentlyReading')}
-            wantToRead={this.state.onshelf.filter((book) => book.shelf === 'wantToRead')} 
-            read={this.state.onshelf.filter((book) => book.shelf === 'read')} 
+            currentlyReading={this.state.books.filter((book) => book.shelf === 'currentlyReading')}
+            wantToRead={this.state.books.filter((book) => book.shelf === 'wantToRead')} 
+            read={this.state.books.filter((book) => book.shelf === 'read')} 
             books={this.state.books} 
             updateShelf={this.updateShelf} 
             shelf={this.state.shelf} 
-            getShelf={this.getShelf}/>
+          />
           )}
         />
         
-        <Route path="/search" render={( {history} ) => (
-          <ListBooks onshelf={this.state.onshelf} getShelf={this.getShelf} searchBooks={this.searchBooks} books={this.state.books } results={this.state.results} updateShelf={this.updateShelf} history={history} />
+        <Route path="/search" render={() => (
+          <ListBooks 
+            onshelf={this.state.onshelf} 
+            getShelf={this.getShelf} 
+            searchBooks={this.searchBooks} 
+            books={this.state.books } 
+            results={this.state.results} 
+            updateShelf={this.updateShelf}/>
           )}
         />
 
