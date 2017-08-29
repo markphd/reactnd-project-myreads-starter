@@ -14,7 +14,6 @@ class ListBooks extends Component {
 
 	loadBook = (book) => {
 		let index = this.props.books.findIndex( (b) => b.id === book.id )
-		console.log(this.props.books[index])
 		if (index >= 0) {
 			return <Book
 				key={this.props.books[index].industryIdentifiers[0].identifier} 
