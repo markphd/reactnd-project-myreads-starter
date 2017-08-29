@@ -20,8 +20,7 @@ class BookShelf extends Component {
 		return(
       <div className="list-books">
         <div className="list-books-title">
-          <h1>MyReads</h1>
-          {JSON.stringify(this.props.onshelf)}
+          <h1>R E A◗ M E</h1>
         </div>
         <div className="list-books-content">
       

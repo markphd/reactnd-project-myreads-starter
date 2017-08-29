@@ -14,13 +14,7 @@ class ListBooks extends Component {
 
 	isSearchQueryEmpty = (bool) => {
 		bool ? this.state.showResult = true : this.state.showResult = false
-		console.log(this.state.showResult)
 	}
-
-	// componentDidMount() {
-	// 	// this.props.books.map((book) => )
-	// 	this.props.results.map((book) => this.props.onshelf.filter((a) => a.id === book.id ? console.log(a) : console.log(book) ))
-	// }
 
 	loadBook = (book) => {
 		let index = this.props.books.findIndex( (b) => b.id === book.id )
@@ -54,7 +48,6 @@ class ListBooks extends Component {
 			  <SearchInput searchBooks={this.props.searchBooks} isQueryEmpty={this.isSearchQueryEmpty} />
 			  <div className="search-books-results">
 			    <ol className="books-grid">
-			    	{JSON.stringify(this.props.results)}
 					{this.state.showResult && (
 						this.props.results.map((book) => (
 							this.loadBook(book)
