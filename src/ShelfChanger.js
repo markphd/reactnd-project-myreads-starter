@@ -29,12 +29,13 @@ class ShelfChanger extends Component {
 
 		return(
 			<select onChange={ this.onShelfChange }>
+				
 				<option value="null" disabled selected={this.props.shelf === undefined ? true : false } >Move to...</option>
 			
 				{ shelves.map((s) => (
 					s.status === this.props.shelf ? <option value={s.status} selected>{s.label}</option> : <option value={s.status}>{s.label}</option>
 				))}
-				
+
 			</select>
 		)
 	}

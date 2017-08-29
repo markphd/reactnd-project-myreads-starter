@@ -18,24 +18,32 @@ class BooksApp extends React.Component {
     }
   }
 
+  /**
+  * @description When App component mounts, BooksAPI getAll is called
+  * to collect list of Books that are already on shelf 
+  * that has a shelf property.
+  */
   componentDidMount() {
     BooksAPI.getAll().then((books) => {
       this.setState({books})
     })
   }
 
-  getAllBooks = () => {
-    BooksAPI.getAll().then((books) => {
-      this.setState({books})
-    })
-  }
-
+  /**
+  * @description This method is passed down to <ListBooks> component
+  * to do the search and store the result in this.state.results 
+  */
   searchBooks = (query) => {
     BooksAPI.search(query).then((results) => {
       this.setState({ results }, () => this.updateShelf )
     })
   }
 
+  /**
+  * @description This method is triggered when there is a change event 
+  * fired within the <Book> component. This is passed down as props to
+  * <ShelfChanger> component. 
+  */
   updateShelf = (book, shelf) => {
     book.shelf = shelf
     this.setState(previousState => ({
