@@ -7,15 +7,6 @@ import BookShelf from './BookShelf'
 
 class BooksApp extends React.Component {
 
-
-    /**
-     * TODO: Instead of using this state variable to keep track of which page
-     * we're on, use the URL in the browser's address bar. This will ensure that
-     * users can use the browser's back and forward buttons to navigate between
-     * pages, as well as provide a good URL they can bookmark and share.
-     */
-    // showSearchPage: true
-
   constructor(props) {
     super(props);
     
@@ -51,15 +42,6 @@ class BooksApp extends React.Component {
         books: previousState.books.filter(b => b.id !== book.id).concat([book])
     }))
   }
-
-  // bookLoader = (books, results) => {
-  //   results.map( (book) => (
-  //     let index = books.findIndex(book) 
-  //     if books.findIndex(book) >= 0 results.concat(books[index]) : book
-  //   ))
-
-  //   // index >= 0 ? this.setState({ book: this.props.onshelf(index)}) : this.setState({ book }) 
-  // }
 
   render() {
     return (

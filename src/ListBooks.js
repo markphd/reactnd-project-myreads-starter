@@ -1,15 +1,11 @@
 import React, { Component } from 'react'
-// import * as BooksAPI from './BooksAPI'
-// import { Link } from 'react-router-dom'
-import escapeStringRegExp from 'escape-string-regexp'
 import SearchInput from './SearchInput'
 import Book from './Book'
 
 class ListBooks extends Component {
 	state = {
 		showResult: '',
-		books: [],
-		book: {}
+		books: []
 	}
 
 	isSearchQueryEmpty = (bool) => {

@@ -1,5 +1,4 @@
 import React, { Component } from 'react'
-import * as BooksAPI from './BooksAPI'
 
 class ShelfChanger extends Component {
 
@@ -32,10 +31,10 @@ class ShelfChanger extends Component {
 			<select onChange={ this.onShelfChange }>
 				<option value="null" disabled selected={this.props.shelf === undefined ? true : false } >Move to...</option>
 			
-					{ shelves.map((s) => (
-						s.status === this.props.shelf ? <option value={s.status} selected>{s.label}</option> : <option value={s.status}>{s.label}</option>
-					))}
-
+				{ shelves.map((s) => (
+					s.status === this.props.shelf ? <option value={s.status} selected>{s.label}</option> : <option value={s.status}>{s.label}</option>
+				))}
+				
 			</select>
 		)
 	}

@@ -4,13 +4,6 @@ import Book from './Book'
 
 class BookShelf extends Component {
 
-	// componentDidMount(){
-	// 	BooksAPI.getAll().then((shelf) => {
-	// 		// this.setState({ shelf: books.filter( (shelf) =>    )})
-	// 		this.setState({ shelf })
-	// 	})
-	// }
-
   state = {
     shelf: ''
   }
@@ -29,7 +22,16 @@ class BookShelf extends Component {
              <div className="bookshelf-books">
               <ol className="books-grid">
                 { this.props.currentlyReading.map((book) => (
-                  <Book key={book.industryIdentifiers[0].identifier} cover={book.imageLinks.thumbnail} title={book.title} authors={book.authors} id={book.id} shelf={book.shelf} book={book} updateShelf={this.props.updateShelf} />
+                  <Book 
+                    key={book.industryIdentifiers[0].identifier} 
+                    cover={book.imageLinks.thumbnail} 
+                    title={book.title} 
+                    authors={book.authors} 
+                    id={book.id} 
+                    shelf={book.shelf} 
+                    book={book} 
+                    updateShelf={this.props.updateShelf} 
+                  />
                 ))}
               </ol>
              </div>
@@ -40,7 +42,16 @@ class BookShelf extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 { this.props.wantToRead.map((book) => (
-                  <Book key={book.industryIdentifiers[0].identifier} cover={book.imageLinks.thumbnail} title={book.title} authors={book.authors} id={book.id} shelf={book.shelf} book={book} updateShelf={this.props.updateShelf} />
+                  <Book 
+                    key={book.industryIdentifiers[0].identifier} 
+                    cover={book.imageLinks.thumbnail} 
+                    title={book.title} 
+                    authors={book.authors} 
+                    id={book.id} 
+                    shelf={book.shelf} 
+                    book={book} 
+                    updateShelf={this.props.updateShelf} 
+                  />
                 ))}
               </ol>
             </div>
@@ -51,7 +62,16 @@ class BookShelf extends Component {
             <div className="bookshelf-books">
               <ol className="books-grid">
                 { this.props.read.map((book) => (
-                  <Book key={book.industryIdentifiers[0].identifier} cover={book.imageLinks.thumbnail} title={book.title} authors={book.authors} id={book.id} shelf={book.shelf} book={book} updateShelf={this.props.updateShelf} />
+                  <Book 
+                    key={book.industryIdentifiers[0].identifier} 
+                    cover={book.imageLinks.thumbnail} 
+                    title={book.title} 
+                    authors={book.authors} 
+                    id={book.id} 
+                    shelf={book.shelf} 
+                    book={book} 
+                    updateShelf={this.props.updateShelf} 
+                  />
                 ))}
               </ol>
             </div>
@@ -59,8 +79,7 @@ class BookShelf extends Component {
               <Link to="/search">Add a book</Link>
             </div>
           </div>
-
-          {console.log(this.state.currentlyReading)}
+          
         </div>
       </div>
 		)
