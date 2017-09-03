@@ -1,6 +1,43 @@
 import React, { Component } from 'react'
-import SearchInput from './SearchInput'
+import { Link } from 'react-router-dom'
 import Book from './Book'
+
+/**
+* @description This component is responsible for 
+* obtaining query from user 
+* to be used in Search function of BooksAPI
+*/
+class SearchInput extends Component {
+	state = {
+		results: [],
+		query: ''
+	}
+
+	updateQuery = (query) => {
+		this.setState({
+			query: query.trim()
+		})
+		this.props.searchBooks(query)
+		this.props.isQueryEmpty(query.length > 0)
+	}
+
+	clearQuery = () => {
+		this.setState({
+			query: ''
+		})
+	}
+	
+	render() {
+		return(
+			<div className="search-books-bar">
+			  <Link to="/" className="close-search">Close</Link>
+			  <div className="search-books-input-wrapper">
+			    <input type="text" placeholder="Search by title or author" onChange={(event) => this.updateQuery(event.target.value)} autofocus="true" />
+			  </div>
+			</div>
+		)
+	}
+}
 
 class ListBooks extends Component {
 	state = {
@@ -31,7 +68,7 @@ class ListBooks extends Component {
 				title={book.title} 
 				authors={book.authors} 
 				id={book.id} 
-				shelf={book.shelf} 
+				shelf={book.shelf || 'none'} 
 				book={book} 
 				updateShelf={this.props.updateShelf} />
 		}

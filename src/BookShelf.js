@@ -48,7 +48,7 @@ class BookShelf extends Component {
                     title={book.title} 
                     authors={book.authors} 
                     id={book.id} 
-                    shelf={book.shelf} 
+                    shelf={book.shelf || 'None'} 
                     book={book} 
                     updateShelf={this.props.updateShelf} 
                   />

@@ -13,7 +13,6 @@ class BooksApp extends React.Component {
     this.state = {
       books: [],
       onshelf: [],
-      results: [],
       shelf: ''
     }
   }
@@ -35,7 +34,7 @@ class BooksApp extends React.Component {
   */
   searchBooks = (query) => {
     BooksAPI.search(query).then((results) => {
-      this.setState({ results }, () => this.updateShelf )
+      this.setState({ results })
     })
   }
 
