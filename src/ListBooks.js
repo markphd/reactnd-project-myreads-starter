@@ -57,16 +57,17 @@ class ListBooks extends Component {
 	}
 
 	loadBook = (book) => {
-		let index = this.props.books.findIndex( (b) => b.id === book.id )
+		const { books, updateShelf } = this.props
+		let index = books.findIndex( (b) => b.id === book.id )
 		if (index >= 0) {
 			return <Book
-				key={this.props.books[index].industryIdentifiers[0].identifier} 
-				cover={this.props.books[index].imageLinks.thumbnail} 
-				title={this.props.books[index].title} 
-				authors={this.props.books[index].authors} 
-				id={this.props.books[index].id} 
-				shelf={this.props.books[index].shelf} 
-				book={this.props.books[index]} 
+				key={books[index].industryIdentifiers[0].identifier} 
+				cover={books[index].imageLinks.thumbnail} 
+				title={books[index].title} 
+				authors={books[index].authors} 
+				id={books[index].id} 
+				shelf={books[index].shelf} 
+				book={books[index]} 
 				updateShelf={this.props.updateShelf} />
 		} else {
 			return <Book
@@ -77,7 +78,7 @@ class ListBooks extends Component {
 				id={book.id} 
 				shelf={book.shelf || 'none'} 
 				book={book} 
-				updateShelf={this.props.updateShelf} />
+				updateShelf={updateShelf} />
 		}
 	}
 
