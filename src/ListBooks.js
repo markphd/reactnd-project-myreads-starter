@@ -8,6 +8,10 @@ import Book from './Book'
 * to be used in Search function of BooksAPI
 */
 class SearchInput extends Component {
+	componentDidMount() {
+	  this.input.focus()
+	}
+	
 	state = {
 		results: [],
 		query: ''
@@ -32,7 +36,10 @@ class SearchInput extends Component {
 			<div className="search-books-bar">
 			  <Link to="/" className="close-search">Close</Link>
 			  <div className="search-books-input-wrapper">
-			    <input type="text" placeholder="Search by title or author" onChange={(event) => this.updateQuery(event.target.value)} autofocus="true" />
+			    <input type="text" 
+			    		placeholder="Search by title or author" 
+			    		onChange={(event) => this.updateQuery(event.target.value)} 
+			    		ref={node => this.input = node} />
 			  </div>
 			</div>
 		)
