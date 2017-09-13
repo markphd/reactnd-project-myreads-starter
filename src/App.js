@@ -53,28 +53,29 @@ class BooksApp extends React.Component {
   }
 
   render() {
+    const { onshelf, books, shelf, results } = this.state
     return (
       <div className="app">
         <Route exact path="/" render={( {history} ) => (
           <BookShelf 
-            onshelf={this.state.onshelf} 
-            currentlyReading={this.state.books.filter((book) => book.shelf === 'currentlyReading')}
-            wantToRead={this.state.books.filter((book) => book.shelf === 'wantToRead')} 
-            read={this.state.books.filter((book) => book.shelf === 'read')} 
-            books={this.state.books} 
+            onshelf={onshelf} 
+            currentlyReading={books.filter((book) => book.shelf === 'currentlyReading')}
+            wantToRead={books.filter((book) => book.shelf === 'wantToRead')} 
+            read={books.filter((book) => book.shelf === 'read')} 
+            books={books} 
             updateShelf={this.updateShelf} 
-            shelf={this.state.shelf} 
+            shelf={shelf} 
           />
           )}
         />
         
         <Route path="/search" render={() => (
           <ListBooks 
-            onshelf={this.state.onshelf} 
+            onshelf={onshelf} 
             getShelf={this.getShelf} 
             searchBooks={this.searchBooks} 
-            books={this.state.books } 
-            results={this.state.results} 
+            books={books } 
+            results={results} 
             updateShelf={this.updateShelf}/>
           )}
         />

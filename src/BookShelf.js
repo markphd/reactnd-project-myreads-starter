@@ -4,10 +4,6 @@ import Book from './Book'
 
 class BookShelf extends Component {
 
-  state = {
-    shelf: ''
-  }
-
 	render() {
      
 		return(
