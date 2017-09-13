@@ -53,7 +53,9 @@ class ListBooks extends Component {
 	}
 
 	isSearchQueryEmpty = (bool) => {
-		bool ? this.state.showResult = true : this.state.showResult = false
+		this.setState({
+			showResult: bool
+		})
 	}
 
 	loadBook = (book) => {
