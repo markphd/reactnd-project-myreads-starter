@@ -34,7 +34,11 @@ class BooksApp extends React.Component {
   */
   searchBooks = (query) => {
     BooksAPI.search(query).then((results) => {
-      this.setState({ results })
+      if (results.error) {
+        this.setState({ results: [] });
+      } else {
+        this.setState({ results });
+      }
     })
   }
 
@@ -49,7 +53,9 @@ class BooksApp extends React.Component {
         books: previousState.books.filter(b => b.id !== book.id).concat([book])
     }))
     BooksAPI.update(book, shelf)
-    .then(console.log("Success!"))
+    .then((val) => {
+      console.log(val, "<=val")
+    }, (reason) => console.log(reason))
   }
 
   render() {
@@ -80,7 +86,7 @@ class BooksApp extends React.Component {
           )}
         />
 
-      </div> // END OF .app
+      </div>
     )
   }
 }
