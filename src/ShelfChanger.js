@@ -33,7 +33,7 @@ class ShelfChanger extends Component {
 				<option value="null" disabled>Move to...</option>
 			
 				{ shelves.map((s) => (
-					s.status === this.props.shelf ? <option key={s.status} value={s.status} selected>{s.label}</option> : <option key={s.status} value={s.status}>{s.label}</option>
+					<option key={s.status} value={s.status}>{s.label}</option>
 				))}
 
 			</select>

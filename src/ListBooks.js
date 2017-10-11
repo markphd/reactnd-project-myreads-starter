@@ -63,7 +63,7 @@ class ListBooks extends Component {
 		let index = books.findIndex( (b) => b.id === book.id )
 		if (index >= 0) {
 			return <Book
-				key={books[index].industryIdentifiers[0].identifier} 
+				key={books[index].id} 
 				cover={books[index].imageLinks.thumbnail} 
 				title={books[index].title} 
 				authors={books[index].authors} 
@@ -73,7 +73,7 @@ class ListBooks extends Component {
 				updateShelf={this.props.updateShelf} />
 		} else {
 			return <Book
-				key={book.industryIdentifiers[0].identifier} 
+				key={book.id} 
 				cover={book.imageLinks.thumbnail} 
 				title={book.title} 
 				authors={book.authors} 
@@ -90,7 +90,7 @@ class ListBooks extends Component {
 			  <SearchInput searchBooks={this.props.searchBooks} isQueryEmpty={this.isSearchQueryEmpty} />
 			  <div className="search-books-results">
 			    <ol className="books-grid">
-					{this.state.showResult && (
+					{(this.state.showResult && this.props.results) && (
 						this.props.results.map((book) => (
 							this.loadBook(book)
 						))

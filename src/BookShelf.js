@@ -19,7 +19,7 @@ class BookShelf extends Component {
               <ol className="books-grid">
                 { this.props.currentlyReading.map((book) => (
                   <Book 
-                    key={book.industryIdentifiers[0].identifier} 
+                    key={book.id} 
                     cover={book.imageLinks.thumbnail} 
                     title={book.title} 
                     authors={book.authors} 
@@ -39,7 +39,7 @@ class BookShelf extends Component {
               <ol className="books-grid">
                 { this.props.wantToRead.map((book) => (
                   <Book 
-                    key={book.industryIdentifiers[0].identifier} 
+                    key={book.id} 
                     cover={book.imageLinks.thumbnail} 
                     title={book.title} 
                     authors={book.authors} 
@@ -59,7 +59,7 @@ class BookShelf extends Component {
               <ol className="books-grid">
                 { this.props.read.map((book) => (
                   <Book 
-                    key={book.industryIdentifiers[0].identifier} 
+                    key={book.id} 
                     cover={book.imageLinks.thumbnail} 
                     title={book.title} 
                     authors={book.authors} 
