@@ -28,7 +28,7 @@ class ShelfChanger extends Component {
 		]
 
 		return(
-			<select onChange={ this.onShelfChange }>
+			<select onChange={ this.onShelfChange } value={this.props.shelf}>
 				
 				<option value="null" disabled>Move to...</option>
 			
